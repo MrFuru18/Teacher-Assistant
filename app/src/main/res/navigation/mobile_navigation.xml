@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_courses">
+
+    <fragment
+        android:id="@+id/navigation_courses"
+        android:name="com.example.teacherassistant.ui.courses.CoursesFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_courses" >
+        <action
+            android:id="@+id/action_navigation_courses_to_addCourseFragment"
+            app:destination="@id/addCourseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_students"
+        android:name="com.example.teacherassistant.ui.students.StudentsFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_students" >
+        <action
+            android:id="@+id/action_navigation_students_to_addStudentFragment"
+            app:destination="@id/addStudentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_more"
+        android:name="com.example.teacherassistant.ui.more.MoreFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/addCourseFragment"
+        android:name="com.example.teacherassistant.ui.courses.AddCourseFragment"
+        android:label="Dodaj kurs"
+        tools:layout="@layout/fragment_add_course" >
+        <action
+            android:id="@+id/action_addCourseFragment_to_navigation_courses2"
+            app:destination="@id/navigation_courses" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStudentFragment"
+        android:name="com.example.teacherassistant.ui.students.AddStudentFragment"
+        android:label="Dodaj ucznia"
+        tools:layout="@layout/fragment_add_student" >
+        <action
+            android:id="@+id/action_addStudentFragment_to_navigation_students2"
+            app:destination="@id/navigation_students" />
+    </fragment>
+</navigation>
