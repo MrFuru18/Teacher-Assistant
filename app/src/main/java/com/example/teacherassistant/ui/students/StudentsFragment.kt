@@ -24,16 +24,11 @@ private var _binding: FragmentStudentsBinding? = null
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    val studentsViewModel =
-            ViewModelProvider(this).get(StudentsViewModel::class.java)
-
     _binding = FragmentStudentsBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
     val textView: TextView = binding.textStudents
-    studentsViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
-    }
+      textView.text = "This is students Fragment"
     return root
   }
 

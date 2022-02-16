@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.findNavController
 import com.example.teacherassistant.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class AddStudentFragment : Fragment() {
@@ -23,6 +26,15 @@ class AddStudentFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_add_student, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (view.findViewById<Button>(R.id.button_confirm)).setOnClickListener {
+
+            it.findNavController().navigate(R.id.action_addStudentFragment_to_navigation_students2)
+
+        }
+    }
     companion object {
         fun newInstance() {}
     }
