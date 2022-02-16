@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class AssistantViewModel(application: Application): AndroidViewModel(application) {
 
-    private val readAllData: LiveData<List<StudentsData>>
+    val readAllData: LiveData<List<StudentsData>>
     private val repository: AssistantRepository
 
     init {
