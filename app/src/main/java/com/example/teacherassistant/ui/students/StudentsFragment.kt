@@ -35,7 +35,7 @@ class StudentsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         assistantViewModel = ViewModelProvider(this).get(AssistantViewModel::class.java)
-        assistantViewModel.readAllData.observe(viewLifecycleOwner, Observer {  student ->
+        assistantViewModel.readStudentsAllData.observe(viewLifecycleOwner, Observer {  student ->
             adapter.setData(student)
         })
 

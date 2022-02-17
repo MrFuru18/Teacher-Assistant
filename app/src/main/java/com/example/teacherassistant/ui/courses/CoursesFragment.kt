@@ -5,38 +5,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teacherassistant.R
 import com.example.teacherassistant.databinding.FragmentCoursesBinding
+import com.example.teacherassistant.ui.AssistantViewModel
+import com.example.teacherassistant.ui.adapters.CoursesRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_courses.view.*
 
 class CoursesFragment : Fragment() {
 
-private var _binding: FragmentCoursesBinding? = null
-  // This property is only valid between onCreateView and
-  // onDestroyView.
-  private val binding get() = _binding!!
+    private lateinit var assistantViewModel: AssistantViewModel
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    val coursesViewModel =
-            ViewModelProvider(this).get(CoursesViewModel::class.java)
+      val view = inflater.inflate(R.layout.fragment_courses, container, false)
 
-    _binding = FragmentCoursesBinding.inflate(inflater, container, false)
-    val root: View = binding.root
+      val adapter = CoursesRecyclerViewAdapter()
+      val recyclerView = view.recyclerview_courses
+      recyclerView.adapter = adapter
+      recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-    val textView: TextView = binding.textCourses
-    coursesViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
-    }
+      assistantViewModel = ViewModelProvider(this).get(AssistantViewModel::class.java)
+      assistantViewModel.readCoursesAllData.observe(viewLifecycleOwner, Observer { course ->
+          adapter.setData(course)
+      })
 
-    return root
+      return view
   }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,8 +53,5 @@ private var _binding: FragmentCoursesBinding? = null
         }
     }
 
-override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }

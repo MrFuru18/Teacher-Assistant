@@ -12,9 +12,7 @@ class StudentsRecyclerViewAdapter: RecyclerView.Adapter<StudentsRecyclerViewAdap
 
     private var studentsList = emptyList<StudentsData>()
 
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-
-    }
+    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.student_element, parent, false))
