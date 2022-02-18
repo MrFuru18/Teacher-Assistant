@@ -95,6 +95,9 @@
         <argument
             android:name="currentStudentInCourse"
             app:argType="com.example.teacherassistant.model.entities.StudentsInCourseData" />
+        <action
+            android:id="@+id/action_gradesFragment_to_gradeUpdateFragment"
+            app:destination="@id/gradeUpdateFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGradeFragment"
@@ -104,6 +107,21 @@
         <action
             android:id="@+id/action_addGradeFragment_to_gradesFragment"
             app:destination="@id/gradesFragment" />
+        <argument
+            android:name="currentStudentInCourse"
+            app:argType="com.example.teacherassistant.model.entities.StudentsInCourseData" />
+    </fragment>
+    <fragment
+        android:id="@+id/gradeUpdateFragment"
+        android:name="com.example.teacherassistant.ui.courses.GradeUpdateFragment"
+        android:label="Aktualizuj Ocenę"
+        tools:layout="@layout/fragment_grade_update" >
+        <action
+            android:id="@+id/action_gradeUpdateFragment_to_gradesFragment"
+            app:destination="@id/gradesFragment" />
+        <argument
+            android:name="currentGrade"
+            app:argType="com.example.teacherassistant.model.entities.GradesData" />
         <argument
             android:name="currentStudentInCourse"
             app:argType="com.example.teacherassistant.model.entities.StudentsInCourseData" />

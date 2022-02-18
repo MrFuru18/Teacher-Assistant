@@ -31,12 +31,11 @@ class GradesFragment : Fragment() {
         view.text_lastName.setText(args.currentStudentInCourse.lastName)
         view.text_id.setText(args.currentStudentInCourse.idStudent.toString())
 
-        val adapter = GradesAdapter()
+        val adapter = GradesAdapter(args.currentStudentInCourse)
         val recyclerView = view.recyclerview_grades
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        assistantViewModel = ViewModelProvider(this).get(AssistantViewModel::class.java)
         assistantViewModel = ViewModelProvider(this).get(AssistantViewModel::class.java)
         assistantViewModel.readGrades(args.currentStudentInCourse.idCourse.toString(), args.currentStudentInCourse.idStudent.toString()).observe(viewLifecycleOwner, Observer {  grade ->
             adapter.setData(grade)

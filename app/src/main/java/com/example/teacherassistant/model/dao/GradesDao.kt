@@ -1,10 +1,7 @@
 package com.example.teacherassistant.model.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.teacherassistant.model.entities.GradesData
 
 @Dao
@@ -12,6 +9,9 @@ interface GradesDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addGrade(grade: GradesData)
+
+    @Update
+    suspend fun updateGrade(grade: GradesData)
 
     @Query("SELECT * FROM grades_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<GradesData>>

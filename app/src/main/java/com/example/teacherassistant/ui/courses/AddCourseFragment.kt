@@ -2,20 +2,20 @@ package com.example.teacherassistant.ui.courses
 
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.Spinner
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.teacherassistant.R
 import com.example.teacherassistant.model.entities.CoursesData
 import com.example.teacherassistant.ui.AssistantViewModel
 import kotlinx.android.synthetic.main.fragment_add_course.*
 import kotlinx.android.synthetic.main.fragment_add_course.view.*
+
 
 class AddCourseFragment : Fragment() {
 

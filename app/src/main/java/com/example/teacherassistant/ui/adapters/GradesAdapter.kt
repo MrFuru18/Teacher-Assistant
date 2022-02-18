@@ -7,9 +7,14 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherassistant.R
 import com.example.teacherassistant.model.entities.GradesData
+import com.example.teacherassistant.model.entities.StudentsInCourseData
+import com.example.teacherassistant.ui.AssistantViewModel
+import com.example.teacherassistant.ui.courses.CoursesFragmentDirections
+import com.example.teacherassistant.ui.courses.GradesFragmentDirections
+import kotlinx.android.synthetic.main.course_element.view.*
 import kotlinx.android.synthetic.main.grade_element.view.*
 
-class GradesAdapter: RecyclerView.Adapter<GradesAdapter.ViewHolder>() {
+class GradesAdapter(private val arg: StudentsInCourseData): RecyclerView.Adapter<GradesAdapter.ViewHolder>() {
 
     private var gradesList = emptyList<GradesData>()
 
@@ -29,6 +34,10 @@ class GradesAdapter: RecyclerView.Adapter<GradesAdapter.ViewHolder>() {
         holder.itemView.text_grade.text = currentItem.grade.toString()
         holder.itemView.text_comment.text = currentItem.comm
 
+        holder.itemView.gradeElementLayout.setOnClickListener {
+            val action = GradesFragmentDirections.actionGradesFragmentToGradeUpdateFragment(currentItem, arg)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     fun setData(grades: List<GradesData>){

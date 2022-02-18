@@ -58,6 +58,12 @@ class AssistantViewModel(application: Application): AndroidViewModel(application
         }
     }
 
+    fun updateGrade(grade: GradesData){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateGrade(grade)
+        }
+    }
+
     fun readStudentsInCourse(searchQuery: String):  LiveData<List<StudentsInCourseData>>{
         return repository.readStudentsInCourseData(searchQuery)
     }

@@ -34,6 +34,10 @@ class AssistantRepository(private val studentsDao: StudentsDao, private val cour
         gradesDao.addGrade(grade)
     }
 
+    suspend fun updateGrade(grade: GradesData){
+        gradesDao.updateGrade(grade)
+    }
+
     fun readStudentsInCourseData(searchQuery: String):  LiveData<List<StudentsInCourseData>>{
         return studentsInCourseDao.readStudentsInCourseData(searchQuery)
     }
