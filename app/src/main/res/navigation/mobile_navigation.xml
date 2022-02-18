@@ -62,5 +62,20 @@
         <argument
             android:name="currentCourse"
             app:argType="com.example.teacherassistant.model.entities.CoursesData" />
+        <action
+            android:id="@+id/action_courseFragment_to_addStudentToCourseFragment"
+            app:destination="@id/addStudentToCourseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStudentToCourseFragment"
+        android:name="com.example.teacherassistant.ui.courses.AddStudentToCourseFragment"
+        android:label="Dodaj ucznia do kursu"
+        tools:layout="@layout/fragment_add_student_to_course" >
+        <action
+            android:id="@+id/action_addStudentToCourseFragment_to_courseFragment"
+            app:destination="@id/courseFragment" />
+        <argument
+            android:name="currentCourse"
+            app:argType="com.example.teacherassistant.model.entities.CoursesData" />
     </fragment>
 </navigation>

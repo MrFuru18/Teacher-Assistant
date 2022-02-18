@@ -6,14 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.teacherassistant.model.dao.CoursesDao
 import com.example.teacherassistant.model.dao.StudentsDao
+import com.example.teacherassistant.model.dao.StudentsInCourseDao
 import com.example.teacherassistant.model.entities.CoursesData
 import com.example.teacherassistant.model.entities.StudentsData
+import com.example.teacherassistant.model.entities.StudentsInCourseData
 
-@Database(entities = [StudentsData::class, CoursesData::class], version = 1, exportSchema = false)
+@Database(entities = [StudentsData::class, CoursesData::class, StudentsInCourseData::class], version = 1, exportSchema = false)
 abstract class AssistantDatabase:RoomDatabase() {
 
     abstract fun studentsDao(): StudentsDao
     abstract fun coursesDao(): CoursesDao
+    abstract fun studentsInCourseDao(): StudentsInCourseDao
 
     companion object{
         @Volatile
