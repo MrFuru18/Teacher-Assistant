@@ -6,10 +6,13 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "students_table")
-data class StudentsData(
-    @PrimaryKey(autoGenerate = false)
+@Entity(tableName = "grades_table")
+data class GradesData(
+    @PrimaryKey(autoGenerate = true)
     val id:Int,
-    val firstName:String,
-    val lastName:String
+    val idCourse:Int,
+    val idStudent:Int,
+    val grade: Double,
+    val category: String,
+    val comm: String
 ):Parcelable

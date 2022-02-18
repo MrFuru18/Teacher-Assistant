@@ -18,4 +18,7 @@ interface StudentsInCourseDao {
 
     @Query("SELECT * FROM studentsInCourse_table WHERE idCourse LIKE :searchQuery ORDER BY idStudent ASC")
     fun readStudentsInCourseData(searchQuery: String): LiveData<List<StudentsInCourseData>>
+
+    @Query("DELETE FROM studentsInCourse_table")
+    suspend fun deleteAllData()
 }

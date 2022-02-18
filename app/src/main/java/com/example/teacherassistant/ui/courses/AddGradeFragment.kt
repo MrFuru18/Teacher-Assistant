@@ -6,30 +6,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.teacherassistant.R
 import com.example.teacherassistant.model.entities.CoursesData
+import com.example.teacherassistant.model.entities.GradesData
 import com.example.teacherassistant.ui.AssistantViewModel
-import kotlinx.android.synthetic.main.fragment_add_course.*
-import kotlinx.android.synthetic.main.fragment_add_course.view.*
+import kotlinx.android.synthetic.main.fragment_add_grade.*
+import kotlinx.android.synthetic.main.fragment_add_grade.view.*
 
-class AddCourseFragment : Fragment() {
+class AddGradeFragment : Fragment() {
 
     private lateinit var assistantViewModel: AssistantViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val args by navArgs<AddGradeFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_add_course, container, false)
+        val view = inflater.inflate(R.layout.fragment_add_grade, container, false)
 
         assistantViewModel = ViewModelProvider(this).get(AssistantViewModel::class.java)
 
@@ -41,23 +38,26 @@ class AddCourseFragment : Fragment() {
     }
 
     private fun insertDataToDatabase() {
-        val name = edit_text_name.text.toString()
-        val day = edit_text_day.text.toString()
-        val timeBlock = edit_text_time.text.toString()
+        val idCourse = args.currentStudentInCourse.idCourse
+        val idStudent = args.currentStudentInCourse.idStudent
+        val grade = edit_grade.text.toString()
+        val category = edit_category.text.toString()
+        val comm = edit_comment.text.toString()
 
-        if(inputCheck(name, day, timeBlock)){
-            val course = CoursesData(0, name, day, timeBlock)
-            assistantViewModel.addCourse(course)
+        if(inputCheck(grade, category, comm)){
+            val grade = GradesData(0, idCourse, idStudent, grade.toDouble(), category, comm)
+            assistantViewModel.addGrade(grade)
             Toast.makeText(requireContext(), "Pomyślnie dodano", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_addCourseFragment_to_navigation_courses2)
+            val action = AddGradeFragmentDirections.actionAddGradeFragmentToGradesFragment(args.currentStudentInCourse)
+            findNavController().navigate(action)
         }
         else{
             Toast.makeText(requireContext(), "Pola są puste", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun inputCheck(name: String, day: String, timeBlock: String): Boolean{
-        return !(TextUtils.isEmpty(name) && TextUtils.isEmpty(day) && TextUtils.isEmpty(timeBlock))
+    private fun inputCheck(grade: String, category: String, comm: String): Boolean{
+        return !(TextUtils.isEmpty(grade) && TextUtils.isEmpty(category) && TextUtils.isEmpty(comm))
     }
 
 

@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_courseFragment_to_addStudentToCourseFragment"
             app:destination="@id/addStudentToCourseFragment" />
+        <action
+            android:id="@+id/action_courseFragment_to_gradesFragment"
+            app:destination="@id/gradesFragment" />
     </fragment>
     <fragment
         android:id="@+id/addStudentToCourseFragment"
@@ -77,5 +80,32 @@
         <argument
             android:name="currentCourse"
             app:argType="com.example.teacherassistant.model.entities.CoursesData" />
+    </fragment>
+    <fragment
+        android:id="@+id/gradesFragment"
+        android:name="com.example.teacherassistant.ui.courses.GradesFragment"
+        android:label="Oceny"
+        tools:layout="@layout/fragment_grades" >
+        <action
+            android:id="@+id/action_gradesFragment_to_courseFragment"
+            app:destination="@id/courseFragment" />
+        <action
+            android:id="@+id/action_gradesFragment_to_addGradeFragment"
+            app:destination="@id/addGradeFragment" />
+        <argument
+            android:name="currentStudentInCourse"
+            app:argType="com.example.teacherassistant.model.entities.StudentsInCourseData" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGradeFragment"
+        android:name="com.example.teacherassistant.ui.courses.AddGradeFragment"
+        android:label="Dodaj ocenę"
+        tools:layout="@layout/fragment_add_grade" >
+        <action
+            android:id="@+id/action_addGradeFragment_to_gradesFragment"
+            app:destination="@id/gradesFragment" />
+        <argument
+            android:name="currentStudentInCourse"
+            app:argType="com.example.teacherassistant.model.entities.StudentsInCourseData" />
     </fragment>
 </navigation>

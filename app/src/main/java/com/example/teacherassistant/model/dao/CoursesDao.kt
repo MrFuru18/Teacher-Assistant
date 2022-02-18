@@ -15,4 +15,7 @@ interface CoursesDao {
 
     @Query("SELECT * FROM courses_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<CoursesData>>
+
+    @Query("DELETE FROM courses_table")
+    suspend fun deleteAllData()
 }
