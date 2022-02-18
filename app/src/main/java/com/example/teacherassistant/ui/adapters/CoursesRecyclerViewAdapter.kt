@@ -3,9 +3,11 @@ package com.example.teacherassistant.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherassistant.R
 import com.example.teacherassistant.model.entities.CoursesData
+import com.example.teacherassistant.ui.courses.CoursesFragmentDirections
 import kotlinx.android.synthetic.main.course_element.view.*
 
 class CoursesRecyclerViewAdapter: RecyclerView.Adapter<CoursesRecyclerViewAdapter.ViewHolder>() {
@@ -27,6 +29,11 @@ class CoursesRecyclerViewAdapter: RecyclerView.Adapter<CoursesRecyclerViewAdapte
         holder.itemView.text_courseName.text = currentItem.name
         holder.itemView.text_day.text = currentItem.day
         holder.itemView.text_timeBlock.text = currentItem.timeBlock
+
+        holder.itemView.courseElementLayout.setOnClickListener {
+            val action = CoursesFragmentDirections.actionNavigationCoursesToCourseFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     fun setData(courses: List<CoursesData>){

@@ -8,6 +8,13 @@
     tools:context=".ui.students.StudentsFragment" >
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_students"
+        android:layout_width="409dp"
+        android:layout_height="460dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addStudentButton"
         android:layout_width="wrap_content"
@@ -21,10 +28,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_students"
-        android:layout_width="409dp"
-        android:layout_height="460dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

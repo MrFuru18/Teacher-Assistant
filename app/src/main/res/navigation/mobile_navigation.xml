@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_courses_to_addCourseFragment"
             app:destination="@id/addCourseFragment" />
+        <action
+            android:id="@+id/action_navigation_courses_to_courseFragment"
+            app:destination="@id/courseFragment" />
     </fragment>
 
     <fragment
@@ -47,5 +50,17 @@
         <action
             android:id="@+id/action_addStudentFragment_to_navigation_students2"
             app:destination="@id/navigation_students" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseFragment"
+        android:name="com.example.teacherassistant.ui.courses.CourseFragment"
+        android:label="Kurs"
+        tools:layout="@layout/fragment_course" >
+        <action
+            android:id="@+id/action_courseFragment_to_navigation_courses"
+            app:destination="@id/navigation_courses" />
+        <argument
+            android:name="currentCourse"
+            app:argType="com.example.teacherassistant.model.entities.CoursesData" />
     </fragment>
 </navigation>
