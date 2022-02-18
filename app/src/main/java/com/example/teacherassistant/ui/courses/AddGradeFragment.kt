@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -45,7 +46,8 @@ class AddGradeFragment : Fragment() {
         val comm = edit_comment.text.toString()
 
         if(inputCheck(grade, category, comm)){
-            val grade = GradesData(0, idCourse, idStudent, grade.toDouble(), category, comm)
+
+            val grade = GradesData(0, idCourse, idStudent, edit_grade.doubleValue(), category, comm)
             assistantViewModel.addGrade(grade)
             Toast.makeText(requireContext(), "Pomyślnie dodano", Toast.LENGTH_SHORT).show()
             val action = AddGradeFragmentDirections.actionAddGradeFragmentToGradesFragment(args.currentStudentInCourse)
@@ -55,6 +57,8 @@ class AddGradeFragment : Fragment() {
             Toast.makeText(requireContext(), "Pola są puste", Toast.LENGTH_SHORT).show()
         }
     }
+
+    fun EditText.doubleValue() = text.toString().toDoubleOrNull() ?: 0.0
 
     private fun inputCheck(grade: String, category: String, comm: String): Boolean{
         return !(TextUtils.isEmpty(grade) && TextUtils.isEmpty(category) && TextUtils.isEmpty(comm))

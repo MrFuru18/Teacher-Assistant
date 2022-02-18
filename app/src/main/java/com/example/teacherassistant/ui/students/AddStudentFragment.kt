@@ -49,7 +49,7 @@ class AddStudentFragment : Fragment() {
         val id = edit_text_number.text.toString()
 
         if(inputCheck(firstName, lastName, id)){
-            val student = StudentsData(Integer.parseInt(id), firstName, lastName)
+            val student = StudentsData(edit_text_number.intValue(), firstName, lastName)
             assistantViewModel.addStudent(student)
             Toast.makeText(requireContext(), "Pomyślnie dodano", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_addStudentFragment_to_navigation_students2)
@@ -58,6 +58,8 @@ class AddStudentFragment : Fragment() {
             Toast.makeText(requireContext(), "Pola są puste", Toast.LENGTH_SHORT).show()
         }
     }
+
+    fun EditText.intValue() = text.toString().toIntOrNull() ?: 0
 
     private fun inputCheck(firstName: String, lastName: String, id: String): Boolean{
         return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(id))
